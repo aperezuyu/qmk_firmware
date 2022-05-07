@@ -89,7 +89,7 @@ LCTL_T(KC_QUOTE), KC_Z,   KC_X,    KC_C,    KC_V,   KC_B,    KC_AUDIO_MUTE,     
 //  |--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|          
 LSFT_T(KC_CAPS), KC_A,   KC_S,    KC_D,    KC_F,   KC_G,                              KC_H,    KC_J,    KC_K,    KC_L,  KC_SLSH, KC_RSFT,
 //  |--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|          
-LCTL_T(KC_QUOTE), KC_Z,  KC_X,    KC_C,    KC_V,   KC_B,   XXXXXXX,         XXXXXXX,  KC_N,   KC_M,   KC_COMM,  KC_DOT, KC_SCLN, KC_MINUS,
+LCTL_T(KC_QUOTE), KC_Z,  KC_X,    KC_C,    KC_V,   KC_B,   KC_AUDIO_MUTE,         KC_MEDIA_PLAY_PAUSE,  KC_N,   KC_M,   KC_COMM,  KC_DOT, KC_SCLN, KC_MINUS,
 //  '--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------'
                        KC_LBRC, KC_PSCREEN, KC_LCMD, SYMB,  KC_SPC,        KC_SPC, MT(NUMP,KC_ENT), KC_ALGR, KC_LALT, KC_RBRC
 //                    '--------'--------'--------'--------'--------'      '--------'--------'--------'--------'--------'                 
