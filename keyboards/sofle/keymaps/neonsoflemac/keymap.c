@@ -41,11 +41,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*
       .--------------------------------------------------.                          .-------------------------------------------------.
-      | ESC/DEL  | 1 ! ¡ |  2  @ |  3  # |  4  $ |  5  % |                          |  6  ^  |  7  & |  8  * |  9 (  |  0 )  |  +  =   |
+      | ESC/DEL  | 1 ! ï¿½ |  2  @ |  3  # |  4  $ |  5  % |                          |  6  ^  |  7  & |  8  * |  9 (  |  0 )  |  +  =   |
       |----------+-------+-------+-------+-------+-------.                          |--------+-------+-------+-------+-------+---------|
       |   TAB    |   Q   |   W   |   E   |   R   |   T   |          _MACOS          |   Y    |   U   |   I   |   O   |   P   | BACKSPC |
       |----------+-------+-------+-------+-------+-------|                          |--------+-------+-------+-------+-------+---------|
-      |SHIFT/CAPS|   A   |   S   |   D   |   F   |   G   |                          |   H    |   J   |   K   |   L   | / ? ¿ | Shift   |
+      |SHIFT/CAPS|   A   |   S   |   D   |   F   |   G   |                          |   H    |   J   |   K   |   L   | / ? ï¿½ | Shift   |
       |----------+-------+-------+-------+-------+----------------.        .--------|--------+-------+-------+-------+-------+---------|
       |CTRL ' "  |   Z   |   X   |   C   |   V   |   B   |        |        |        |   N    |   M   |  , <  |  . >  |  ; :  |  -  _   |
       '------------------+-------+-------+-------+-------+--------|        |--------+--------+-------+-------+-------+-------+---------'
@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  |--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|          
 LSFT_T(KC_CAPS), MAC_A,   KC_S,    KC_D,    KC_F,   KC_G,                              KC_H,  KC_J,    KC_K,   KC_L,   KC_SLSH, KC_RSFT,
 //  |--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|          
-LCTL_T(KC_QUOTE), KC_Z,   KC_X,    KC_C,    KC_V,   KC_B,    XXXXXXX,         XXXXXXX, MAC_N,   KC_M,   KC_COMM,  KC_DOT, KC_SCLN, KC_MINUS,
+LCTL_T(KC_QUOTE), KC_Z,   KC_X,    KC_C,    KC_V,   KC_B,    KC_AUDIO_MUTE,         KC_MEDIA_PLAY_PAUSE, MAC_N,   KC_M,   KC_COMM,  KC_DOT, KC_SCLN, KC_MINUS,
 //  '--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------'
                         KC_LBRC, KC_PSCREEN, KC_LCMD, SYMB,  KC_SPC,         KC_SPC, MT(NUMP,KC_ENT), KC_ALGR, KC_LALT, KC_RBRC
 //                    '--------'--------'--------'--------'--------'      '--------'--------'--------'--------'--------'                 
@@ -69,11 +69,11 @@ LCTL_T(KC_QUOTE), KC_Z,   KC_X,    KC_C,    KC_V,   KC_B,    XXXXXXX,         XX
 
 /*
       .--------------------------------------------------.                          .-------------------------------------------------.
-      | ESC/DEL  | 1 ! ¡ |  2  @ |  3  # |  4  $ |  5  % |                          |  6  ^  |  7  & |  8  * |  9 (  |  0 )  |  +  =   |
+      | ESC/DEL  | 1 ! ï¿½ |  2  @ |  3  # |  4  $ |  5  % |                          |  6  ^  |  7  & |  8  * |  9 (  |  0 )  |  +  =   |
       |----------+-------+-------+-------+-------+-------.                          |--------+-------+-------+-------+-------+---------|
       |   TAB    |   Q   |   W   |   E   |   R   |   T   |           _WIN10         |   Y    |   U   |   I   |   O   |   P   | BACKSPC |
       |----------+-------+-------+-------+-------+-------|                          |--------+-------+-------+-------+-------+---------|
-      |Shift/CAPS|   A   |   S   |   D   |   F   |   G   |                          |   H    |   J   |   K   |   L   | / ? ¿ | Shift   |
+      |Shift/CAPS|   A   |   S   |   D   |   F   |   G   |                          |   H    |   J   |   K   |   L   | / ? ï¿½ | Shift   |
       |----------+-------+-------+-------+-------+----------------.        .--------|--------+-------+-------+-------+-------+---------|
       | CTRL ' " |   Z   |   X   |   C   |   V   |   B   |        |        |        |   N    |   M   |  , <  |  . >  |  ; :  |  -  _   |
       '------------------+-------+-------+-------+-------+--------|        |--------+--------+-------+-------+-------+-------+---------'
@@ -129,7 +129,7 @@ LCTL_T(KC_QUOTE), KC_Z,  KC_X,    KC_C,    KC_V,   KC_B,   XXXXXXX,         XXXX
       |----------+-------+-------+-------+-------+-------.                          |--------+-------+-------+-------+-------+---------|
       |          |   #   |   $   |   %   |   &   |       |          _SYMB           |        | HOME  |   UP  |  END  |       | BACKSPC |
       |----------+-------+-------+-------+-------+-------|                          |--------+-------+-------+-------+-------+---------|
-      |     |    |   ´   |   `   |   ¬   |   ~   |   \   |                          |        |  LEFT |  DOWN | RIGHT |       |         |
+      |     |    |   ï¿½   |   `   |   ï¿½   |   ~   |   \   |                          |        |  LEFT |  DOWN | RIGHT |       |         |
       |----------+-------+-------+-------+-------+----------------.        .--------|--------+-------+-------+-------+-------+---------|
       |          |       |       |       |       |       |        |        |        |        |       |       |       |       |         |
       '------------------+-------+-------+-------+-------+--------|        |--------+--------+-------+-------+-------+-------+---------'
@@ -526,7 +526,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     return false; // ya que true registraria ademas el keycode slash
                 } else if (mod_state & MOD_MASK_ALT) {
                     del_mods(MOD_MASK_ALT);
-                    tap_code16(ALGR(KC_1)); // registrar ¡
+                    tap_code16(ALGR(KC_1)); // registrar ï¿½
                     key_registered = true; 
                     set_mods(mod_state); 
                     return false; // ya que true registraria ademas el keycode slash
@@ -574,7 +574,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     return false; // ya que true registraria ademas el keycode slash
                 } else if (mod_state & MOD_MASK_ALT) {
                     del_mods(MOD_MASK_ALT);
-                    tap_code16(ALGR(KC_SLSH)); // registrar ¿
+                    tap_code16(ALGR(KC_SLSH)); // registrar ï¿½
                     key_registered = true; 
                     set_mods(mod_state); 
                     return false; // ya que true registraria ademas el keycode slash
