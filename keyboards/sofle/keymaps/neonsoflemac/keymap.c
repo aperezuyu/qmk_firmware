@@ -63,7 +63,7 @@ LSFT_T(KC_CAPS), MAC_A,   KC_S,    KC_D,    KC_F,   KC_G,                       
 //  |--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|          
 LCTL_T(KC_QUOTE), KC_Z,   KC_X,    KC_C,    KC_V,   KC_B,    KC_AUDIO_MUTE,         KC_MEDIA_PLAY_PAUSE, MAC_N,   KC_M,   KC_COMM,  KC_DOT, KC_SCLN, KC_MINUS,
 //  '--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------'
-                        KC_LBRC, KC_PSCREEN, KC_LCMD, SYMB,  KC_SPC,         KC_SPC, MT(NUMP,KC_ENT), KC_ALGR, KC_LALT, KC_RBRC
+                        LALT_T(KC_LBRC), KC_PSCREEN, KC_LCMD, SYMB,  KC_ENT,         KC_SPC, NUMP, KC_ALGR, KC_LALT, KC_RBRC
 //                    '--------'--------'--------'--------'--------'      '--------'--------'--------'--------'--------'                 
     ),    
 
@@ -91,7 +91,7 @@ LSFT_T(KC_CAPS), KC_A,   KC_S,    KC_D,    KC_F,   KC_G,                        
 //  |--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|          
 LCTL_T(KC_QUOTE), KC_Z,  KC_X,    KC_C,    KC_V,   KC_B,   KC_AUDIO_MUTE,         KC_MEDIA_PLAY_PAUSE,  KC_N,   KC_M,   KC_COMM,  KC_DOT, KC_SCLN, KC_MINUS,
 //  '--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------'
-                       KC_LBRC, KC_PSCREEN, KC_LCMD, SYMB,  KC_SPC,        KC_SPC, MT(NUMP,KC_ENT), KC_ALGR, KC_LALT, KC_RBRC
+                       LALT_T(KC_LBRC), KC_PSCREEN, KC_LCMD, SYMB,  KC_ENT,        KC_SPC, NUMP, KC_ALGR, KC_LALT, KC_RBRC
 //                    '--------'--------'--------'--------'--------'      '--------'--------'--------'--------'--------'                 
     ),
     
@@ -119,7 +119,7 @@ LCTL_T(KC_QUOTE), KC_Z,  KC_X,    KC_C,    KC_V,   KC_B,   KC_AUDIO_MUTE,       
 //  |--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|                          
      KC_CIRC, KC_EQUAL,  KC_7,   KC_8,    KC_9,    KC_0,   XXXXXXX,        XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, XXXXXXX,
 //  '--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------'  
-                XXXXXXX, KC_PSCREEN, KC_LCMD, MT(SYMB,KC_ENT), KC_SPC,      KC_SPC,  _______, KC_ALGR, KC_LALT, XXXXXXX
+                XXXXXXX, KC_PSCREEN, KC_LCMD, SYMB, KC_ENT,      KC_SPC,  _______, KC_ALGR, KC_LALT, XXXXXXX
 //                    '--------------------------------------------'      '--------------------------------------------'                      
     ),
 
@@ -147,7 +147,7 @@ LSFT(KC_BSLS), ALGR(KC_QUOTE), KC_GRV, ALGR(KC_BSLS), KC_TILDE, KC_BSLS,        
 //  |--------+--------+--------+--------+--------+--------|                        |--------+--------+--------+--------+--------+--------|       
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 //  '--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------'    
-                    XXXXXXX, KC_PSCREEN, KC_LCMD,  _______,   KC_SPC,       KC_SPC, MT(NUMP,KC_ENT), KC_ALGR, KC_LALT, XXXXXXX
+                    XXXXXXX, KC_PSCREEN, KC_LCMD,  _______,   KC_ENT,       KC_SPC, NUMP, KC_ALGR, KC_LALT, XXXXXXX
 //                    '--------------------------------------------'      '--------------------------------------------'                        
     ),
 
@@ -263,9 +263,11 @@ void led_set_user(uint8_t usb_led) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LSFT_T(KC_CAPS):
-        case MT(SYMB,KC_ENT):
-        case MT(NUMP,KC_ENT):
+        case SYMB:
+        case NUMP:
         case LCTL_T(KC_QUOTE):    
+            return 150;
+        case LALT_T(KC_LBRC):    
             return 150;
             
         default:
@@ -491,23 +493,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 update_tri_layer(_SYMB, _NUMP, _TUNE);
             }
             return false;
-
-        case MT(SYMB,KC_ENT):
-            if (record->tap.count && record->event.pressed) {
-                tap_code16(KC_ENT);
-            } else if (record->event.pressed) {
-                layer_on(_SYMB);
-                update_tri_layer(_SYMB, _NUMP, _TUNE);
-            } else {
-                layer_off(_SYMB);
-                update_tri_layer(_SYMB, _NUMP, _TUNE);
-            }
-            return false;
             
-        case MT(NUMP,KC_ENT):
-            if (record->tap.count && record->event.pressed) {
-                tap_code16(KC_ENT);
-            } else if (record->event.pressed) {
+        case NUMP:
+            if (record->event.pressed) {
                 layer_on(_NUMP);
                 update_tri_layer(_SYMB, _NUMP, _TUNE);
             } else {
@@ -542,6 +530,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     return false;
                 }
             }
+
+        case LALT_T(KC_LBRC):  
+            if (record->tap.count && record->event.pressed) {
+                if (mod_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    tap_code16(KC_LEFT_CURLY_BRACE);
+                    set_mods(mod_state);
+                    return false;
+                } else {
+                    tap_code16(KC_LBRC);
+                    return false;
+                }
+            } else if (record->event.pressed) {
+                register_code16(KC_LALT);
+                return false;
+            } else {
+                unregister_code16(KC_LALT);
+                return false;
+            }      
 
         case LCTL_T(KC_QUOTE):  
             if (record->tap.count && record->event.pressed) {
